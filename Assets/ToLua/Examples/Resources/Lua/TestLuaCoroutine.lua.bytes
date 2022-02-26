@@ -11,17 +11,17 @@ end
 function CoFunc()
     print('Coroutine started')    
     for i = 0, 10, 1 do
-        print(fib(i))                    
-        coroutine.wait(0.1)						
+        print("===fib函数 a："..fib(i))
+        coroutine.wait(1)
     end	
-	print("current frameCount: "..Time.frameCount)
+	print("=== 当前帧数current frameCount: "..Time.frameCount)
 	coroutine.step()
-	print("yield frameCount: "..Time.frameCount)
+	print("===coroutine.step yield frameCount: "..Time.frameCount)
 
 	local www = UnityEngine.WWW("http://www.baidu.com")
 	coroutine.www(www)
 	local s = tolua.tolstring(www.bytes)
-	print(s:sub(1, 128))
+	print("===s:sub:"..s:sub(1, 128))
     print('Coroutine ended')
 end
 

@@ -18,8 +18,10 @@ public class ScriptsFromFile : MonoBehaviour
         Application.RegisterLogCallback(Log);
 #endif         
         lua = new LuaState();                
-        lua.Start();        
+        lua.Start();
         //如果移动了ToLua目录，自己手动修复吧，只是例子就不做配置了
+
+        Debug.Log("====Application.dataPath："+ Application.dataPath);
         string fullPath = Application.dataPath + "\\ToLua/Examples/02_ScriptsFromFile";
         lua.AddSearchPath(fullPath);        
     }

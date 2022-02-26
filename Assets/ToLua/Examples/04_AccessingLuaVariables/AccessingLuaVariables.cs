@@ -35,8 +35,8 @@ public class AccessingLuaVariables : MonoBehaviour
         lua.DoString(script);
 
         //通过LuaState访问
-        Debugger.Log("Read var from lua: {0}", lua["var2read"]);
-        Debugger.Log("Read table var from lua: {0}", lua["varTable.default"]);  //LuaState 拆串式table
+        Debugger.Log("====访问Lua全局变量 Read var from lua: {0}", lua["var2read"]);
+        Debugger.Log("====访问table属性 Read table var from lua: {0}", lua["varTable.default"]);  //LuaState 拆串式table
 
         LuaFunction func = lua["TestFunc"] as LuaFunction;
         func.Call();
@@ -44,9 +44,9 @@ public class AccessingLuaVariables : MonoBehaviour
 
         //cache成LuaTable进行访问
         LuaTable table = lua.GetTable("varTable");
-        Debugger.Log("Read varTable from lua, default: {0} name: {1}", table["default"], table["map.name"]);
+        Debugger.Log("====访问table属性 Read varTable from lua, default: {0} name: {1}", table["default"], table["map.name"]);
         table["map.name"] = "new";  //table 字符串只能是key
-        Debugger.Log("Modify varTable name: {0}", table["map.name"]);
+        Debugger.Log("====修改table属性 Modify varTable name: {0}", table["map.name"]);
 
         table.AddTable("newmap");
         LuaTable table1 = (LuaTable)table["newmap"];
@@ -58,14 +58,14 @@ public class AccessingLuaVariables : MonoBehaviour
 
         if (table1 != null)
         {
-            Debugger.Log("varTable metatable name: {0}", table1["name"]);
+            Debugger.Log("===访问原表属性  varTable metatable name: {0}", table1["name"]);
         }
 
         object[] list = table.ToArray();
 
         for (int i = 0; i < list.Length; i++)
         {
-            Debugger.Log("varTable[{0}], is {1}", i, list[i]);
+            Debugger.Log("===表转换成数组 varTable[{0}], is {1}", i, list[i]);
         }
 
         table.Dispose();                        

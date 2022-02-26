@@ -18,7 +18,7 @@ public class TestCoroutine : MonoBehaviour
         Application.RegisterLogCallback(ShowTips);
 #endif        
         new LuaResLoader();
-        lua  = new LuaState();
+        lua = new LuaState();
         lua.Start();
         LuaBinder.Bind(lua);
         DelegateFactory.Init();         
